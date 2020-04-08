@@ -21,8 +21,8 @@ class LogoWidget extends StatelessWidget {
         overflow: Overflow.visible,
         children: <Widget>[
           Positioned(
-            right: 6,
-            top: -6,
+            right: 4,
+            top: -4,
             left: 0,
             bottom: 0,
             child: Container(
@@ -36,22 +36,24 @@ class LogoWidget extends StatelessWidget {
           Center(
             child: Container(
               width: 2,
-              color: Colors.grey[400],
+              color: Colors.grey[300],
             ),
           ),
           Align(
             alignment: Alignment.topCenter,
             child: Container(
-                width: 40,
-                height: 30,
-                decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    ))),
+              width: 40,
+              height: 30,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(18),
+                  topRight: Radius.circular(18),
+                  bottomLeft: Radius.circular(18),
+                  bottomRight: Radius.circular(18),
+                ),
+              ),
+            ),
           ),
           Column(
             children: <Widget>[
@@ -61,14 +63,14 @@ class LogoWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Container(
-                      height: 15,
-                      width: 15,
+                      height: 13,
+                      width: 13,
                       decoration: BoxDecoration(
                           color: Colors.black, shape: BoxShape.circle),
                     ),
                     Container(
-                      height: 15,
-                      width: 15,
+                      height: 13,
+                      width: 13,
                       decoration: BoxDecoration(
                           color: Colors.black, shape: BoxShape.circle),
                     )
