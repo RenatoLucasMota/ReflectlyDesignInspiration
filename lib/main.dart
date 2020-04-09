@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reflectly_inspiration/splash_screen.dart';
+import 'package:reflectly_inspiration/pages/splash_screen.dart';
 
 void main() => runApp(MyApp());
 

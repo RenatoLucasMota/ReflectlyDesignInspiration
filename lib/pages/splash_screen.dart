@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reflectly_inspiration/logo_widget.dart';
-import 'package:reflectly_inspiration/start_page.dart';
+import 'package:reflectly_inspiration/pages/start_page.dart';
+import 'package:reflectly_inspiration/widgets/logo_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
