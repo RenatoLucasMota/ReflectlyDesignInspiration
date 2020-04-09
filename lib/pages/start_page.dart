@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:reflectly_inspiration/pages/first_page.dart';
+import 'package:reflectly_inspiration/pages/password_page.dart';
+import 'package:reflectly_inspiration/pages/second_page.dart';
+import 'package:reflectly_inspiration/pages/third_page.dart';
 import 'package:reflectly_inspiration/utils/animation_item.dart';
+import 'package:reflectly_inspiration/utils/consts.dart';
 import 'package:reflectly_inspiration/widgets/logo_widget.dart';
 
 class StartPage extends StatefulWidget {
@@ -13,6 +17,8 @@ class _StartPageState extends State<StartPage> {
   List<AnimationItem> animationlist = [];
   Tween<double> postionLogo;
   int _currentIndex;
+  int _currentIndexColor = 0;
+  Tween _animacaoColor;
   @override
   void initState() {
     super.initState();
@@ -29,6 +35,7 @@ class _StartPageState extends State<StartPage> {
     });
     _pageController = PageController(initialPage: 0);
     postionLogo = Tween(begin: 0.0, end: 0.0);
+    _animacaoColor = Tween(begin: 2.3, end: 2.3);
   }
 
   @override
@@ -36,18 +43,24 @@ class _StartPageState extends State<StartPage> {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.teal,
       extendBody: true,
       body: Stack(
         alignment: Alignment.topCenter,
         children: <Widget>[
-          Container(
-            height: _height,
-            width: _width,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.indigoAccent, Colors.indigo])),
+          TweenAnimationBuilder(
+            duration: Duration(milliseconds: 400),
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: _currentIndexColor != null
+                      ? listColors[_currentIndexColor]
+                      : null),
+            ),
+            builder: (BuildContext context, value, Widget child) {
+              return Transform.scale(scale: value, child: child);
+            },
+            tween: _animacaoColor,
           ),
           SizedBox(
             height: _height,
@@ -71,17 +84,26 @@ class _StartPageState extends State<StartPage> {
               children: <Widget>[
                 FirstPage(
                   pageController: _pageController,
+                  buttonColor: listColors[_currentIndexColor].colors[1],
                 ),
-                Container(),
-                Container(),
-                Container(),
+                SecondPage(),
+                PasswordPage(),
+                ThirdPage(
+                  valueChanged: (index) {
+                    setState(() {
+                      _animacaoColor = Tween(begin: 4.0, end: 0.0);
+                      _currentIndexColor = index;
+                      _animacaoColor = Tween(begin: 0.0, end: 2.3);
+                    });
+                  },
+                ),
               ],
             ),
           ),
           TweenAnimationBuilder(
             duration: Duration(milliseconds: 400),
             curve:
-                _currentIndex == null ? Curves.elasticOut : Curves.easeOutCubic,
+                _currentIndex == null ? Curves.elasticOut : Curves.easeInCubic,
             tween: postionLogo,
             builder: (BuildContext context, animation, Widget child) {
               return AnimatedPositioned(
@@ -92,7 +114,7 @@ class _StartPageState extends State<StartPage> {
                     : 15,
                 child: TweenAnimationBuilder(
                   child: LogoWidget(),
-                  duration: Duration(milliseconds: 1000),
+                  duration: Duration(milliseconds: 400),
                   curve: Curves.elasticOut,
                   tween: findAnimation('logo_scale', 0.0, animationlist),
                   builder: (context, value, child) {
@@ -118,8 +140,8 @@ class _StartPageState extends State<StartPage> {
                   ),
                   onPressed: () {
                     _pageController.animateToPage(_currentIndex - 1,
-                        duration: Duration(milliseconds: 400),
-                        curve: Curves.easeOutCubic);
+                        duration: Duration(milliseconds: 800),
+                        curve: Curves.easeInCubic);
                   },
                 ),
                 SizedBox(
@@ -132,8 +154,8 @@ class _StartPageState extends State<StartPage> {
                   ),
                   onPressed: () {
                     _pageController.animateToPage(_currentIndex + 1,
-                        duration: Duration(milliseconds: 400),
-                        curve: Curves.easeOutCubic);
+                        duration: Duration(milliseconds: 800),
+                        curve: Curves.easeInCubic);
                   },
                 ),
               ],
@@ -151,27 +173,28 @@ class _StartPageState extends State<StartPage> {
                   height: 8,
                   width: 8,
                   decoration: BoxDecoration(
-                    color: _currentIndex == 1 ? Colors.white : Colors.white54,
-                    shape: BoxShape.circle
-                  ),
+                      color: _currentIndex == 1 ? Colors.white : Colors.white54,
+                      shape: BoxShape.circle),
                 ),
-                SizedBox(height: 12,),
+                SizedBox(
+                  height: 12,
+                ),
                 Container(
                   height: 8,
                   width: 68,
                   decoration: BoxDecoration(
-                    color: _currentIndex == 2 ? Colors.white : Colors.white54,
-                    shape: BoxShape.circle
-                  ),
+                      color: _currentIndex == 2 ? Colors.white : Colors.white54,
+                      shape: BoxShape.circle),
                 ),
-                SizedBox(height: 12,),
+                SizedBox(
+                  height: 12,
+                ),
                 Container(
                   height: 8,
                   width: 8,
                   decoration: BoxDecoration(
-                    color: _currentIndex == 3 ? Colors.white : Colors.white54,
-                    shape: BoxShape.circle
-                  ),
+                      color: _currentIndex == 3 ? Colors.white : Colors.white54,
+                      shape: BoxShape.circle),
                 ),
               ],
             ),

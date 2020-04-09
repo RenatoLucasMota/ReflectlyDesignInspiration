@@ -4,8 +4,9 @@ import 'package:reflectly_inspiration/widgets/logo_widget.dart';
 
 class FirstPage extends StatefulWidget {
   final PageController pageController;
+  final Color buttonColor;
 
-  const FirstPage({Key key, this.pageController}) : super(key: key);
+  const FirstPage({Key key, this.pageController, this.buttonColor}) : super(key: key);
   @override
   _FirstPageState createState() => _FirstPageState();
 }
@@ -166,12 +167,12 @@ class _FirstPageState extends State<FirstPage> {
                                       borderRadius: BorderRadius.circular(40)),
                                   onPressed: () {
                                     widget.pageController.animateToPage(1,
-                                        duration: Duration(milliseconds: 400),
-                                        curve: Curves.easeOutCubic);
+                                        duration: Duration(milliseconds: 800),
+                                        curve: Curves.easeInCubic);
                                   },
                                   child: Text(
                                     'OLÁ, REFLECTLY',
-                                    style: TextStyle(color: Colors.indigo),
+                                    style: TextStyle(color: widget.buttonColor),
                                   ),
                                 ),
                               ),

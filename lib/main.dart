@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Reflectly Inspiration',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Google'
       ),
       home: SplashScreen(),
     );
