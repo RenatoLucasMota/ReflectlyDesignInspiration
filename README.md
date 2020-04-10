@@ -3,7 +3,7 @@
 </h1>
 <p align="center">
    <a href="https://github.com/RenatoLucasMota">
-    </h1>Renato Mota</h1>
+    </h1>Github</h1>
   </a>
    <a href="https://www.youtube.com/channel/UCd-vLa_qcKve3CsDFlYiygA">
     </h1>Youtube</h1>
