@@ -9,10 +9,11 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     openStartPage();
   }
+
   openStartPage() async {
     await Future.delayed(
       Duration(seconds: 3),
@@ -20,7 +21,6 @@ class _SplashScreenState extends State<SplashScreen> {
         context,
         MaterialPageRoute(
           builder: (context) => StartPage(),
-          
         ),
       ),
     );
@@ -30,7 +30,17 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      body: Center(child: Transform.scale(scale: 1.2, child: LogoWidget())),
+      body: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Center(
+            child: Transform.scale(
+              scale: 1.2,
+              child: LogoWidget(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

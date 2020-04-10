@@ -184,7 +184,7 @@ class _FirstPageState extends State<FirstPage> {
                   },
                 ),
                 TweenAnimationBuilder(
-                    child: LogoWidget(),
+                    //child: LogoWidget(),
                     duration: Duration(milliseconds: 1000),
                     curve: Curves.elasticOut,
                     tween: findAnimation('button_scale', 0.0, animationlist),

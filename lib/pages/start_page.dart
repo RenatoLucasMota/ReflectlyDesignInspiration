@@ -43,14 +43,15 @@ class _StartPageState extends State<StartPage> {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: Colors.transparent,
       extendBody: true,
       body: Stack(
         alignment: Alignment.topCenter,
         children: <Widget>[
           TweenAnimationBuilder(
             duration: Duration(milliseconds: 400),
-            child: Container(
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 300),
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: _currentIndexColor != null
@@ -89,6 +90,7 @@ class _StartPageState extends State<StartPage> {
                 SecondPage(),
                 PasswordPage(),
                 ThirdPage(
+                  initialIndex: _currentIndexColor,
                   valueChanged: (index) {
                     setState(() {
                       _animacaoColor = Tween(begin: 4.0, end: 0.0);
@@ -101,20 +103,19 @@ class _StartPageState extends State<StartPage> {
             ),
           ),
           TweenAnimationBuilder(
-            duration: Duration(milliseconds: 400),
-            curve:
-                _currentIndex == null ? Curves.elasticOut : Curves.easeInCubic,
+            duration: Duration(milliseconds: 300),
+            curve: _currentIndex == null ? Curves.elasticOut : Curves.easeInOut,
             tween: postionLogo,
             builder: (BuildContext context, animation, Widget child) {
               return AnimatedPositioned(
-                duration: Duration(milliseconds: 400),
+                duration: Duration(milliseconds: 300),
                 top: _height * 0.10,
                 left: _currentIndex == null || _currentIndex == 0
                     ? _width / 2 - (100 / 2)
                     : 15,
                 child: TweenAnimationBuilder(
                   child: LogoWidget(),
-                  duration: Duration(milliseconds: 400),
+                  duration: Duration(milliseconds: 300),
                   curve: Curves.elasticOut,
                   tween: findAnimation('logo_scale', 0.0, animationlist),
                   builder: (context, value, child) {
@@ -169,7 +170,8 @@ class _StartPageState extends State<StartPage> {
             curve: Curves.easeOutCubic,
             child: Column(
               children: <Widget>[
-                Container(
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
                   height: 8,
                   width: 8,
                   decoration: BoxDecoration(
@@ -179,7 +181,8 @@ class _StartPageState extends State<StartPage> {
                 SizedBox(
                   height: 12,
                 ),
-                Container(
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
                   height: 8,
                   width: 68,
                   decoration: BoxDecoration(
@@ -189,7 +192,8 @@ class _StartPageState extends State<StartPage> {
                 SizedBox(
                   height: 12,
                 ),
-                Container(
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
                   height: 8,
                   width: 8,
                   decoration: BoxDecoration(

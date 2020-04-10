@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class SecondPage extends StatefulWidget {
+  const SecondPage({Key key}) : super(key: key); 
   @override
   _SecondPageState createState() => _SecondPageState();
 }
 
-class _SecondPageState extends State<SecondPage> {
+class _SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMixin {
   String _nikname = '';
 
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
-    //double _width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.only(left: 30, right: 30, top: _height * 0.23),
       child: Column(
@@ -71,4 +71,7 @@ class _SecondPageState extends State<SecondPage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
